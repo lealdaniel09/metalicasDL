@@ -1,0 +1,172 @@
+<section id="trabajos" class="py-5" style="background-color: #121417;">
+    <div class="container">
+
+        <!-- Encabezado de la sección -->
+        <div class="text-center mb-5">
+            <span class="badge bg-secondary text-primary border border-secondary px-3 py-2 text-uppercase mb-2">
+                Nuestros Trabajos
+            </span>
+            <h2 class="display-5 fw-bold text-white text-uppercase">
+                Catálogo de <span class="text-primary">Estructuras & Acabados</span>
+            </h2>
+            <p class="text-secondary mx-auto" style="max-width: 650px;">
+                Soldadura eléctrica 6013 y 7018, corte y perfilería a medida. Cada pieza sale con doble fondo
+                anticorrosivo.
+            </p>
+
+            <!-- Botones de Filtrado (Signals) -->
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+                @for (cat of categorias; track cat.id) {
+                <button type="button" (click)="cambiarCategoria(cat.id)"
+                    class="btn btn-sm px-3 py-2 rounded-pill fw-semibold transition-all"
+                    [ngClass]="categoriaActiva() === cat.id ? 'btn-primary' : 'btn-outline-secondary text-light'">
+                    {{ cat.label }}
+                </button>
+                }
+            </div>
+        </div>
+
+        <!-- Grilla de Trabajos -->
+        <div class="row g-4">
+            @for (item of proyectos(); track item.id) {
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 bg-dark text-light border border-secondary shadow-sm card-hover">
+
+                    <div class="position-relative overflow-hidden" style="height: 240px;">
+                        <img [src]="item.imagenPrincipal" [alt]="item.titulo"
+                            class="card-img-top w-100 h-100 object-fit-cover">
+                        @if (item.destacado) {
+                        <span class="position-absolute top-0 end-0 m-3 badge bg-primary text-white text-uppercase">
+                            Destacado
+                        </span>
+                        }
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <span class="text-primary small text-uppercase fw-bold mb-1">{{ item.categoria }}</span>
+                        <h5 class="card-title text-white fw-bold">{{ item.titulo }}</h5>
+                        <p class="card-text text-secondary small flex-grow-1">
+                            {{ item.descripcionCorta }}
+                        </p>
+
+                        <!-- Especificaciones técnicas rápidas -->
+                        <div class="p-2 rounded mb-3" style="background-color: #1E2229; font-size: 0.85rem;">
+                            @if (item.especificaciones.calibre) {
+                            <div><strong class="text-light">Lámina:</strong> <span class="text-secondary">{{
+                                    item.especificaciones.calibre }}</span></div>
+                            }
+                            @if (item.especificaciones.perfiles) {
+                            <div><strong class="text-light">Perfiles:</strong> <span class="text-secondary">{{
+                                    item.especificaciones.perfiles }}</span></div>
+                            }
+                            @if (item.especificaciones.soldadura) {
+                            <div><strong class="text-light">Soldadura:</strong> <span class="text-secondary">{{
+                                    item.especificaciones.soldadura }}</span></div>
+                            }
+                        </div>
+
+                        <!-- Acciones -->
+                        <div class="d-flex gap-2">
+                            <button (click)="abrirDetalle(item)" class="btn btn-outline-light btn-sm w-50">
+                                <i class="bi bi-eye me-1"></i> Detalles
+                            </button>
+                            <a [href]="generarMensajeWhatsApp(item.titulo)" target="_blank"
+                                class="btn btn-primary btn-sm w-50">
+                                <i class="bi bi-whatsapp me-1"></i> Cotizar
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            } @empty {
+            <div class="col-12 text-center text-secondary py-5">
+                <p class="fs-5">No hay proyectos registrados en esta categoría aún.</p>
+            </div>
+            }
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal Rápido de Detalle Técnico -->
+<!-- Modal Rápido de Detalle Técnico -->
+@if (proyectoSeleccionado(); as p) {
+<div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.8);">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-light border border-secondary">
+
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title fw-bold text-white">{{ p.titulo }}</h5>
+                <button type="button" class="btn-close btn-close-white" (click)="cerrarDetalle()"></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Lógica del Carrusel: Si tiene galería muestra el carrusel, si no, muestra la imagen principal -->
+                @if (p.galeria && p.galeria.length > 0) {
+                <div id="carruselTrabajos" class="carousel slide mb-3 shadow-lg rounded" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        @for (img of p.galeria; track img; let i = $index) {
+                        <button type="button" data-bs-target="#carruselTrabajos" [attr.data-bs-slide-to]="i"
+                            [class.active]="i === 0" aria-current="true"></button>
+                        }
+                    </div>
+                    <div class="carousel-inner rounded" style="max-height: 420px;">
+                        @for (img of p.galeria; track img; let i = $index) {
+                        <div class="carousel-item" [class.active]="i === 0">
+                            <img [src]="img" [alt]="p.titulo" class="d-block w-100 object-fit-cover"
+                                style="height: 380px;">
+                        </div>
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carruselTrabajos"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carruselTrabajos"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+                } @else {
+                <img [src]="p.imagenPrincipal" [alt]="p.titulo" class="img-fluid rounded mb-3 w-100 shadow-lg"
+                    style="max-height: 380px; object-fit: cover;">
+                }
+
+                <h6 class="text-primary text-uppercase fw-bold">Descripción del trabajo</h6>
+                <p class="text-secondary">{{ p.descripcionDetallada }}</p>
+
+                <h6 class="text-primary text-uppercase fw-bold mt-4">Ficha Técnica de Materiales</h6>
+                <ul class="list-group list-group-flush rounded border border-secondary mb-3">
+                    @if (p.especificaciones.calibre) {
+                    <li class="list-group-item bg-dark text-light border-secondary"><strong>Calibre / Lámina:</strong>
+                        {{ p.especificaciones.calibre }}</li>
+                    }
+                    @if (p.especificaciones.perfiles) {
+                    <li class="list-group-item bg-dark text-light border-secondary"><strong>Perfiles y Ángulos:</strong>
+                        {{ p.especificaciones.perfiles }}</li>
+                    }
+                    @if (p.especificaciones.soldadura) {
+                    <li class="list-group-item bg-dark text-light border-secondary"><strong>Tipo de Soldadura:</strong>
+                        {{ p.especificaciones.soldadura }}</li>
+                    }
+                    @if (p.especificaciones.acabado) {
+                    <li class="list-group-item bg-dark text-light border-secondary"><strong>Tratamiento y
+                            Acabado:</strong> {{ p.especificaciones.acabado }}</li>
+                    }
+                </ul>
+            </div>
+
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" (click)="cerrarDetalle()">Cerrar</button>
+                <a [href]="generarMensajeWhatsApp(p.titulo)" target="_blank" class="btn btn-primary">
+                    <i class="bi bi-whatsapp me-1"></i> Cotizar este Trabajo
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+}

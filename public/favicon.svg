@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fondo redondeado estilo app -->
+  <rect width="64" height="64" rx="14" fill="#121417" />
+  
+  <!-- Letra D en Blanco Acero -->
+  <path d="M10 14 h14 c10 0 16 6 16 18 s-6 18 -16 18 H10 Z M19 23 v18 h5 c5 0 8 -3 8 -9 s-3 -9 -8 -9 Z" fill="#F4F5F7" />
+  
+  <!-- Letra L en Naranja Soldadura superpuesta con corte -->
+  <path d="M33 14 h9 v27 h13 v9 H33 Z" fill="#FF6B00" />
+  
+  <!-- Chispa de arco eléctrico en la esquina -->
+  <polygon points="50,12 53,20 61,23 53,26 50,34 47,26 39,23 47,20" fill="#FFFFFF" />
+</svg>

@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+@use "sass:color";
+
+// Paleta Metálicas DL
+$primary: #FF6B00;
+$dark: #121417;
+$body-bg: #121417;
+$body-color: #F4F5F7;
+$border-color: #3A414D;
+
+$card-bg: #1E2229;
+$card-border-color: #3A414D;
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+.btn-primary {
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 4px 14px rgba(255, 107, 0, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        background-color: color.adjust(#FF6B00, $lightness: -7%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+    }
+}
