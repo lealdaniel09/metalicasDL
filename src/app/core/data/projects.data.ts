@@ -7,7 +7,7 @@ export const PROYECTOS_INICIALES: ProyectoMetalico[] = [
         categoria: 'portones',
         descripcionCorta: 'Portón de seguridad con tableros diamantados a mano y anticorrosivo.',
         descripcionDetallada: 'Fabricación de 20 m² en lámina con formación de diamante a golpe y plegado, perfilería reforzada y cerradura de seguridad integrada.',
-        imagenPrincipal: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
+        imagenPrincipal: 'trabajos/porton-diamantado.jpg',
         especificaciones: {
             calibre: 'Lámina Calibre 18',
             perfiles: 'Tubo 2x1 chapa y marco en cajón 3x1 1/2',
@@ -17,16 +17,21 @@ export const PROYECTOS_INICIALES: ProyectoMetalico[] = [
         destacado: true
     },
     {
-        id: 'cerchas-estructurales-02',
-        titulo: 'Cerchas Estructurales para Cubierta',
+        id: 'cubierta-terraza-milagros-02',
+        titulo: 'Cubierta Estructural en Terraza (3er Piso)',
         categoria: 'estructuras',
-        descripcionCorta: 'Juego de 12 cerchas de alta resistencia para bodega/galpón.',
-        descripcionDetallada: 'Estructuras triangulares armadas con cordón superior e inferior en ángulo rígido, celosía en varilla corrugada para soportar teja de zinc y cargas de viento.',
-        imagenPrincipal: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+        descripcionCorta: 'Fabricación y montaje de estructura metálica y cubierta para terraza comercial en tercer nivel.',
+        descripcionDetallada: 'Proyecto integral de ampliación y techado en terraza de tercer piso (Discoteca Milagros, sector Parque Mitológico). Se fabricó e instaló toda la estructura portante en altura, cerchas, columnas de soporte y cubierta termoacústica/zinc, integrándose perfectamente con la estructura existente y la fachada.',
+        imagenPrincipal: 'trabajos/cubierta-milagros-fachada.jpg',
+        galeria: [
+            'trabajos/cubierta-milagros-fachada.jpg',
+            'trabajos/cubierta-milagros-estructura.jpg',
+            'trabajos/cubierta-milagros-panoramica.jpg'
+        ],
         especificaciones: {
-            perfiles: 'Ángulo estructural de 3/4 x 1/8',
-            soldadura: 'Electrodo 7018 estructural en uniones de carga',
-            acabado: 'Fondo de cromato de zinc'
+            perfiles: 'Tubería estructural cuadrada y rectangular de alta resistencia',
+            soldadura: 'Electrodo 7018 estructural en uniones de carga y anclajes',
+            acabado: 'Doble fondo anticorrosivo y esmalte negro de protección intemperie'
         },
         destacado: true
     },
@@ -36,7 +41,7 @@ export const PROYECTOS_INICIALES: ProyectoMetalico[] = [
         categoria: 'ornamentacion',
         descripcionCorta: 'Ornamentación tradicional con diseño geométrico y alta seguridad.',
         descripcionDetallada: 'Protecciones exteriores para ventanas y pasamanos de escalera con remates pulidos sin rebaba.',
-        imagenPrincipal: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
+        imagenPrincipal: 'trabajos/puerta-lujo-final.jpg',
         especificaciones: {
             perfiles: 'Cuadrado macizo 1/2" y platinas de anclaje',
             soldadura: '6013 pulido fino',
